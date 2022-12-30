@@ -1,0 +1,12 @@
+@import "abstracts/variables/fonts";
+@import "abstracts/variables/colors";
+@import "abstracts/mixins";
+
+body,
+html {
+  font-family: $font-family-1;
+  background-color: $bgColor;
+  color: $txtColor;
+  margin: 0;
+  padding: 0;
+}

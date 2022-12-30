@@ -1,15 +1,15 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { ProductType } from "../types/product";
-import axios, { AxiosResponse } from "axios";
+import axios from "axios";
 
 const initialState: ProductType[] = [];
 
-export const fetchAllProducts = createAsyncThunk(
-  "fetchAllProducts",
+export const fetchLimitedProducts = createAsyncThunk(
+  "fetchLimitedProducts",
   async () => {
     try {
       const response = await axios.get(
-        "https://api.escuelajs.co/api/v1/products"
+        "https://api.escuelajs.co/api/v1/products?offset=50&limit=10"
       );
       const data: ProductType[] | Error = await response.data;
       return data;
@@ -19,7 +19,7 @@ export const fetchAllProducts = createAsyncThunk(
   }
 );
 
-const productSlice = createSlice({
+const limitedProductSlice = createSlice({
   name: "productSlice",
   initialState: initialState,
   reducers: {
@@ -32,7 +32,7 @@ const productSlice = createSlice({
     },
   },
   extraReducers: (build) => {
-    build.addCase(fetchAllProducts.fulfilled, (state, action) => {
+    build.addCase(fetchLimitedProducts.fulfilled, (state, action) => {
       if ("message" in action.payload && action.payload) {
         return state;
       } else if (!action.payload) {
@@ -42,17 +42,17 @@ const productSlice = createSlice({
       }
     });
 
-    build.addCase(fetchAllProducts.rejected, (state, action) => {
+    build.addCase(fetchLimitedProducts.rejected, (state, action) => {
       console.log("error in fetching data");
       return state;
     });
 
-    build.addCase(fetchAllProducts.pending, (state, action) => {
-      console.log("fetching all products data");
+    build.addCase(fetchLimitedProducts.pending, (state, action) => {
+      console.log("fetching limited products data");
       return state;
     });
   },
 });
 
-const productReducer = productSlice.reducer;
-export default productReducer;
+const limitedProductReducer = limitedProductSlice.reducer;
+export default limitedProductReducer;
