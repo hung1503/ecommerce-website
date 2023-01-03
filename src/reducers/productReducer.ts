@@ -55,4 +55,5 @@ const productSlice = createSlice({
 });
 
 const productReducer = productSlice.reducer;
+export const { sortName } = productSlice.actions;
 export default productReducer;

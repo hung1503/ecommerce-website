@@ -3,17 +3,20 @@ import { Link } from "react-router-dom";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 
 import { useAppDispatch, useAppSelector } from "../../hooks/reduxHook";
-import { fetchLimitedProducts } from "../../reducers/limitedProductReducer";
+import { fetchAllProducts } from "../../reducers/productReducer";
+import { ProductType } from "../../types/product";
 
 const Carousel = () => {
-  const limitedProducts = useAppSelector((state) => state.limitedProducts);
+  const products = useAppSelector((state) => state.products);
   const dispatch = useAppDispatch();
   useEffect(() => {
-    dispatch(fetchLimitedProducts());
+    dispatch(fetchAllProducts());
   }, [dispatch]);
+
+  const handleAddtoCart = (product: ProductType) => {};
   return (
     <div>
-      {limitedProducts.map((product) => {
+      {products.slice(40, 50).map((product) => {
         return (
           <div key={product.id}>
             <Link to={"/products/" + product.id}>
@@ -21,7 +24,7 @@ const Carousel = () => {
             </Link>
             <h3>{product.title}</h3>
             <p>${product.price}</p>
-            <button type="submit">
+            <button type="submit" onClick={() => handleAddtoCart(product)}>
               <AddShoppingCartIcon /> Add To Cart
             </button>
           </div>

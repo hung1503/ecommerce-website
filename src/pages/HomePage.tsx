@@ -1,11 +1,11 @@
 import React from "react";
 import Carousel from "../components/carousel/Carousel";
-import PopularSlide from "../components/popularSlides/PopularSlide";
+import PromoSlide from "../components/promoSlides/PromoSlide";
 
 const HomePage = () => {
   return (
     <div>
-      <PopularSlide />
+      <PromoSlide />
       <Carousel />
     </div>
   );

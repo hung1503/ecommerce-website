@@ -2,6 +2,9 @@
 @import "abstracts/variables/colors";
 @import "abstracts/mixins";
 
+@import "sections/navbar";
+@import "sections/promoSlide";
+
 body,
 html {
   font-family: $font-family-1;

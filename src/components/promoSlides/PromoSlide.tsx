@@ -1,12 +1,12 @@
 import React from "react";
 import homepic from "../../assets/images/slide-pic.jpg";
 
-const PopularSlide = () => {
+const PromoSlide = () => {
   return (
-    <div>
+    <div className="promoSlideContainer">
       <img src={homepic} alt="slide" />
     </div>
   );
 };
 
-export default PopularSlide;
+export default PromoSlide;
