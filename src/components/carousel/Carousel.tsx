@@ -5,6 +5,7 @@ import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import { useAppDispatch, useAppSelector } from "../../hooks/reduxHook";
 import { fetchAllProducts } from "../../reducers/productReducer";
 import { ProductType } from "../../types/product";
+import { addToCart } from "../../reducers/cartReducer";
 
 const Carousel = () => {
   const products = useAppSelector((state) => state.products);
@@ -13,7 +14,15 @@ const Carousel = () => {
     dispatch(fetchAllProducts());
   }, [dispatch]);
 
-  const handleAddtoCart = (product: ProductType) => {};
+  const handleAddtoCart = (product: ProductType) => {
+    dispatch(
+      addToCart({
+        product: product,
+        quantity: 1,
+        totalPrice: product.price,
+      })
+    );
+  };
   return (
     <div>
       {products.slice(40, 50).map((product) => {

@@ -1,9 +1,21 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useAppSelector } from "../hooks/reduxHook";
+import { useAppDispatch, useAppSelector } from "../hooks/reduxHook";
+import { addToCart } from "../reducers/cartReducer";
+import { ProductType } from "../types/product";
 
 const ProductsListPage = () => {
   const products = useAppSelector((state) => state.products);
+  const dispatch = useAppDispatch();
+  const handleAddtoCart = (product: ProductType) => {
+    dispatch(
+      addToCart({
+        product: product,
+        quantity: 1,
+        totalPrice: product.price,
+      })
+    );
+  };
   return (
     <div>
       <h1>Products</h1>
@@ -19,7 +31,9 @@ const ProductsListPage = () => {
               </Link>
               <p>{item.title}</p>
               <h3>${item.price}</h3>
-              <button type="submit">Add to Cart</button>
+              <button type="submit" onClick={() => handleAddtoCart(item)}>
+                Add to Cart
+              </button>
             </div>
           );
         })
