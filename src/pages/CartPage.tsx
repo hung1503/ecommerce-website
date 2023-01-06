@@ -39,7 +39,12 @@ const CartPage = () => {
             </Link>
             <p>${item.product.price}</p>
             <div>
-              <button onClick={() => decreaseItem(item)}>decrease</button>
+              <button
+                onClick={() => decreaseItem(item)}
+                disabled={item.quantity === 1}
+              >
+                decrease
+              </button>
               <span>Quantity: {item.quantity}</span>
               <button onClick={() => increaseItem(item)}>increase</button>
             </div>
