@@ -2,7 +2,7 @@ import React from "react";
 import { useAppSelector } from "../../hooks/reduxHook";
 
 const Profile = () => {
-  const user = useAppSelector((state) => state.users);
+  const user = useAppSelector((state) => state.user);
   if (user.length === 0) {
   }
   return (

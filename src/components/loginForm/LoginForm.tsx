@@ -4,7 +4,7 @@ import { useAppDispatch, useAppSelector } from "../../hooks/reduxHook";
 import { userLogin } from "../../reducers/userReducer";
 
 const LoginForm = () => {
-  const userInfo = useAppSelector((state) => state.users);
+  const userInfo = useAppSelector((state) => state.user);
   const dispatch = useAppDispatch();
   const nav = useNavigate();
   const [email, setEmail] = useState("");

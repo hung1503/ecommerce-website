@@ -3,10 +3,10 @@ import { Link, useNavigate } from "react-router-dom";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { useAppDispatch, useAppSelector } from "../../hooks/reduxHook";
 import { userLogout } from "../../reducers/userReducer";
-
+import avatar from "../../assets/images/avatar.jpg";
 const Navbar = () => {
   const cart = useAppSelector((state) => state.cart);
-  const user = useAppSelector((state) => state.users);
+  const user = useAppSelector((state) => state.user);
   const nav = useNavigate();
   const dispatch = useAppDispatch();
   const handleLogOut = () => {
@@ -28,22 +28,36 @@ const Navbar = () => {
           {cart.length > 0 && <span className="cartCount">{cart.length}</span>}
         </Link>
         <div className="dropdown">
-          <p>User</p>
-          <div className="dropdown-content">
-            {user.length !== 1 ? (
-              <div>
-                <Link to="/login">Login</Link>
-                <Link to="/register">Register</Link>
+          {user.length !== 1 ? (
+            <div>
+              <img className="avatar-pic" src={avatar} alt="avatar-pic" />
+              <div className="dropdown-content">
+                <div>
+                  <Link to="/login">Login</Link>
+                  <Link to="/register">Register</Link>
+                </div>
               </div>
-            ) : (
-              <div>
+            </div>
+          ) : (
+            <div>
+              {user.map((user) => {
+                return (
+                  <img
+                    key={user.id}
+                    className="avatar-pic"
+                    src={user.avatar}
+                    alt="user-avatar"
+                  />
+                );
+              })}
+              <div className="dropdown-content">
                 <Link to="/user">Profile</Link>
                 <button type="submit" onClick={() => handleLogOut()}>
                   Log out
                 </button>
               </div>
-            )}
-          </div>
+            </div>
+          )}
         </div>
       </div>
     </div>
