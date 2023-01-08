@@ -14,6 +14,7 @@ import AboutPage from "./pages/AboutPage";
 import LoginForm from "./components/loginForm/LoginForm";
 import RegisterForm from "./components/registerForm/RegisterForm";
 import Profile from "./components/profile/Profile";
+import CreateProductForm from "./components/createProductForm/CreateProductForm";
 
 const App = () => {
   return (
@@ -30,6 +31,7 @@ const App = () => {
           <Route path="/about" element={<AboutPage />} />
           <Route path="/login" element={<LoginForm />} />
           <Route path="/register" element={<RegisterForm />} />
+          <Route path="/createProduct" element={<CreateProductForm />} />
         </Routes>
       </div>
       <Footer />

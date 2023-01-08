@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import axios, { AxiosResponse } from "axios";
+import axiosInstance from "../common/axiosInstance";
 import { UserLogin, UserLoginResponse, UserType } from "../types/user";
 
 export const getFromLocalStorage = (): UserType[] => {
@@ -15,19 +16,14 @@ export const userLogin = createAsyncThunk(
   "userLogin",
   async (info: UserLogin) => {
     try {
-      const response: AxiosResponse<UserLoginResponse, any> = await axios.post(
-        "https://api.escuelajs.co/api/v1/auth/login",
-        info
-      );
+      const response: AxiosResponse<UserLoginResponse, any> =
+        await axiosInstance.post("/auth/login", info);
       const { access_token } = await response.data;
-      const userInfo = await axios.get(
-        "https://api.escuelajs.co/api/v1/auth/profile",
-        {
-          headers: {
-            Authorization: `bearer ${access_token}`,
-          },
-        }
-      );
+      const userInfo = await axiosInstance.get("/auth/profile", {
+        headers: {
+          Authorization: `bearer ${access_token}`,
+        },
+      });
       const loggedInUser = {
         userInfo: userInfo.data,
         access_token,

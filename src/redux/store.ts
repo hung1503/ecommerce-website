@@ -4,14 +4,18 @@ import categoryReducer from "../reducers/categoryReducer";
 import productReducer from "../reducers/productReducer";
 import userReducer from "../reducers/userReducer";
 
-export const store = configureStore({
-  reducer: {
-    products: productReducer,
-    cart: cartReducer,
-    user: userReducer,
-    categories: categoryReducer,
-  },
-});
+export const createStore = () => {
+  return configureStore({
+    reducer: {
+      products: productReducer,
+      cart: cartReducer,
+      user: userReducer,
+      categories: categoryReducer,
+    },
+  });
+};
+
+const store = createStore();
 
 export type AppDispatch = typeof store.dispatch;
 export type RootState = ReturnType<typeof store.getState>;
