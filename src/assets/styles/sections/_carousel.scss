@@ -1,0 +1,86 @@
+.carouselContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.carouselSection {
+  display: grid;
+  grid-template-columns: repeat(5, auto);
+  align-items: center;
+  justify-content: center;
+  row-gap: 2rem;
+  column-gap: 2rem;
+  & .carouselProduct {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 0.2rem;
+    width: 200px;
+    height: 310px;
+    border-radius: 5px;
+    box-shadow: 0px 2px 5px 0px rgba(70, 69, 69, 0.75);
+    transition: all ease-in 0.4s;
+    &-img {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      & img {
+        width: 170px;
+        height: 170px;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+      }
+    }
+
+    &-content {
+      padding: 1rem;
+    }
+
+    &-title {
+      font-weight: 400;
+      font-size: 1.1rem;
+      margin: 0;
+      padding: 0.5rem 0;
+    }
+
+    &-price {
+      margin: 0;
+      padding: 0;
+      font-weight: bold;
+    }
+
+    &-btn {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      transition: opacity ease-in 0.3s;
+      & button {
+        cursor: pointer;
+        padding: 0.3rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 150px;
+        border-radius: 15px;
+        border-color: rgb(139, 4, 4);
+        color: rgb(139, 4, 4);
+        background-color: $bgColor;
+        transition: all ease 0.3s;
+        &:hover {
+          background-color: rgb(161, 5, 5);
+          color: #fff;
+        }
+      }
+    }
+    &:hover {
+      transform: scale(1.1);
+      & .carouselProduct-btn {
+        opacity: 1;
+      }
+    }
+  }
+}

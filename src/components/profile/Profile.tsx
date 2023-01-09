@@ -1,10 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { useAppSelector } from "../../hooks/reduxHook";
 
 const Profile = () => {
   const user = useAppSelector((state) => state.user);
-  if (user.length === 0) {
-  }
+  console.log(user);
+  const nav = useNavigate();
+  useEffect(() => {
+    const isLogIn = localStorage.getItem("loggedInUser");
+    if (!isLogIn) {
+      nav("/login");
+    }
+  });
+
   return (
     <div>
       <h1>Profile</h1>

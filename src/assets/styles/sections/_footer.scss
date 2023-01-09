@@ -1,0 +1,48 @@
+.footerSection {
+  display: flex;
+  flex-direction: column;
+  & .footerSection-promo {
+    padding: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(211, 208, 48);
+    & p {
+      font-size: 1.7rem;
+      font-weight: bold;
+    }
+    & button {
+      background-color: #000;
+      color: #fff;
+      font-size: 1rem;
+      margin: 1rem;
+      padding: 0.5rem 0.7rem;
+      transition: all ease 0.3s;
+      &:hover {
+        color: rgb(121, 118, 118);
+      }
+    }
+  }
+
+  & .footer-links {
+    display: flex;
+    padding: 3rem 0;
+    justify-content: space-evenly;
+  }
+  & a {
+    text-decoration: none;
+  }
+
+  & .footer-navbar {
+    display: flex;
+    justify-content: space-evenly;
+    width: 30%;
+  }
+  & .footer-social {
+    color: #000;
+    display: flex;
+    justify-content: space-evenly;
+    width: 20%;
+    font-size: 1.5rem;
+  }
+}

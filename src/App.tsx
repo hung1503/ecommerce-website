@@ -25,12 +25,12 @@ const App = () => {
           <Route path="/" element={<HomePage />} />
           <Route path="/products" element={<ProductsListPage />} />
           <Route path="/products/:id" element={<SingleProductPage />} />
-          <Route path="/user" element={<Profile />} />
           <Route path="/cart" element={<CartPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/login" element={<LoginForm />} />
           <Route path="/register" element={<RegisterForm />} />
+          <Route path="/profile" element={<Profile />} />
           <Route path="/createProduct" element={<CreateProductForm />} />
         </Routes>
       </div>

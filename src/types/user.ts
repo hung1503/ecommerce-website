@@ -21,3 +21,15 @@ export interface UserReducerType {
   user: UserType;
   loginResponse: UserLoginResponse;
 }
+
+export interface CreateUser {
+  name: string;
+  email: string;
+  password: string;
+  avatar: string;
+}
+
+export interface CreateUserWithFile {
+  image: File;
+  user: CreateUser;
+}

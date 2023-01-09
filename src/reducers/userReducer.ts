@@ -1,7 +1,12 @@
-import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
-import axios, { AxiosResponse } from "axios";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { AxiosResponse } from "axios";
 import axiosInstance from "../common/axiosInstance";
-import { UserLogin, UserLoginResponse, UserType } from "../types/user";
+import {
+  CreateUserWithFile,
+  UserLogin,
+  UserLoginResponse,
+  UserType,
+} from "../types/user";
 
 export const getFromLocalStorage = (): UserType[] => {
   const user = localStorage.getItem("loggedInUser");
@@ -12,6 +17,17 @@ export const getFromLocalStorage = (): UserType[] => {
   }
 };
 const initialState: UserType[] = getFromLocalStorage();
+
+export const fetchAllUsers = createAsyncThunk("fetchAllUsers", async () => {
+  try {
+    const response = await axiosInstance.get("/users");
+    const data: UserType[] | Error = await response.data;
+    return data;
+  } catch (error: any) {
+    throw new Error(error.message);
+  }
+});
+
 export const userLogin = createAsyncThunk(
   "userLogin",
   async (info: UserLogin) => {
@@ -36,6 +52,24 @@ export const userLogin = createAsyncThunk(
   }
 );
 
+export const userRegister = createAsyncThunk(
+  "userRegister",
+  async ({ image, user }: CreateUserWithFile) => {
+    try {
+      const resImg = await axiosInstance.post("/files/upload", image);
+      const img = await resImg.data.location;
+      const response: AxiosResponse<UserType, any> = await axiosInstance.post(
+        "/users/",
+        { ...user, avatar: img }
+      );
+      const data = await response.data;
+      return data;
+    } catch (error: any) {
+      console.log(error.message);
+    }
+  }
+);
+
 const userSlice = createSlice({
   name: "userSlice",
   initialState: initialState,
@@ -47,20 +81,54 @@ const userSlice = createSlice({
     },
   },
   extraReducers: (build) => {
-    build.addCase(userLogin.fulfilled, (state, action) => {
-      if (action.payload) {
-        state.push(action.payload);
-      }
-      return state;
-    });
-    build.addCase(userLogin.rejected, (state, action) => {
-      console.log(action.payload);
-      return state;
-    });
-    build.addCase(userLogin.pending, (state, action) => {
-      console.log("pending data");
-      return state;
-    });
+    build
+      .addCase(fetchAllUsers.fulfilled, (state, action) => {
+        if ("message" in action.payload && action.payload) {
+          return state;
+        } else if (!action.payload) {
+          return state;
+        } else {
+          return action.payload;
+        }
+      })
+      .addCase(fetchAllUsers.rejected, (state, action) => {
+        console.log("error in fetching data");
+        return state;
+      })
+      .addCase(fetchAllUsers.pending, (state, action) => {
+        // console.log("fetching all users data");
+        return state;
+      });
+    build
+      .addCase(userLogin.fulfilled, (state, action) => {
+        if (action.payload) {
+          state.push(action.payload);
+        }
+        return state;
+      })
+      .addCase(userLogin.rejected, (state, action) => {
+        console.log(action.payload);
+        return state;
+      })
+      .addCase(userLogin.pending, (state, action) => {
+        console.log("loging in");
+        return state;
+      });
+    build
+      .addCase(userRegister.fulfilled, (state, action) => {
+        if (action.payload) {
+          state.push(action.payload);
+        }
+        return state;
+      })
+      .addCase(userRegister.rejected, (state, action) => {
+        console.log(action.payload);
+        return state;
+      })
+      .addCase(userRegister.pending, (state, action) => {
+        console.log("creating data");
+        return state;
+      });
   },
 });
 

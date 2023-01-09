@@ -10,8 +10,8 @@ import {
 
 const Footer = () => {
   return (
-    <div className="footer">
-      <div className="promo">
+    <footer className="footerSection">
+      <div className="footerSection-promo">
         <p>BECOME A MEMBER & GET 30% OFF YOUR FIRST ORDER</p>
         <button>JOIN NOW</button>
       </div>
@@ -23,24 +23,24 @@ const Footer = () => {
           <Link to="/about">About</Link>
         </div>
         <div className="footer-social">
-          <a href="https://www.facebook.com/">
+          <a href="https://www.facebook.com/" target="_blank" rel="noreferrer">
             <Facebook />
           </a>
-          <a href="https://twitter.com/">
+          <a href="https://twitter.com/" target="_blank" rel="noreferrer">
             <Twitter />
           </a>
-          <a href="https://www.youtube.com/">
+          <a href="https://www.youtube.com/" target="_blank" rel="noreferrer">
             <YouTube />
           </a>
-          <a href="https://www.pinterest.com/">
+          <a href="https://www.pinterest.com/" target="_blank" rel="noreferrer">
             <Pinterest />
           </a>
-          <a href="https://www.instagram.com/">
+          <a href="https://www.instagram.com/" target="_blank" rel="noreferrer">
             <Instagram />
           </a>
         </div>
       </div>
-    </div>
+    </footer>
   );
 };
 

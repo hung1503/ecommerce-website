@@ -4,6 +4,9 @@
 
 @import "sections/navbar";
 @import "sections/promoSlide";
+@import "sections/carousel";
+@import "sections/footer";
+@import "sections/productList";
 
 body,
 html {
@@ -15,5 +18,12 @@ html {
 }
 
 .mainContainer {
-  padding: 10rem;
+  max-width: 1320px;
+  padding: 8rem 6rem 2rem;
+  margin: 0 auto;
+}
+
+.img-product {
+  width: 100%;
+  display: block;
 }

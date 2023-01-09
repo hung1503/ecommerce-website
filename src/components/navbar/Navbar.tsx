@@ -9,6 +9,7 @@ const Navbar = () => {
   const user = useAppSelector((state) => state.user);
   const nav = useNavigate();
   const dispatch = useAppDispatch();
+  const isLogIn = localStorage.getItem("loggedInUser");
   const handleLogOut = () => {
     dispatch(userLogout());
     nav("/login");
@@ -28,7 +29,7 @@ const Navbar = () => {
           {cart.length > 0 && <span className="cartCount">{cart.length}</span>}
         </Link>
         <div className="dropdown">
-          {user.length !== 1 ? (
+          {!isLogIn ? (
             <div>
               <img className="avatar-pic" src={avatar} alt="avatar-pic" />
               <div className="dropdown-content">
@@ -51,7 +52,7 @@ const Navbar = () => {
                 );
               })}
               <div className="dropdown-content">
-                <Link to="/user">Profile</Link>
+                <Link to="/profile">Profile</Link>
                 <button type="submit" onClick={() => handleLogOut()}>
                   Log out
                 </button>

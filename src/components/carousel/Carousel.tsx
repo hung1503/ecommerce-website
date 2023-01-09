@@ -24,21 +24,30 @@ const Carousel = () => {
     );
   };
   return (
-    <div>
-      {products.slice(40, 50).map((product) => {
-        return (
-          <div key={product.id}>
-            <Link to={"/products/" + product.id}>
-              <img src={product.images[0]} alt={product.title} />
-            </Link>
-            <h3>{product.title}</h3>
-            <p>${product.price}</p>
-            <button type="submit" onClick={() => handleAddtoCart(product)}>
-              <AddShoppingCartIcon /> Add To Cart
-            </button>
-          </div>
-        );
-      })}
+    <div className="carouselContainer">
+      <h2>Popular products</h2>
+      <div className="carouselSection">
+        {products.slice(40, 50).map((product) => {
+          return (
+            <div key={product.id} className="carouselProduct">
+              <Link to={"/products/" + product.id}>
+                <div className="carouselProduct-img">
+                  <img src={product.images[0]} alt={product.title} />
+                </div>
+              </Link>
+              <div className="carouselProduct-content">
+                <p className="carouselProduct-title">{product.title}</p>
+                <p className="carouselProduct-price">${product.price}</p>
+              </div>
+              <div className="carouselProduct-btn">
+                <button type="submit" onClick={() => handleAddtoCart(product)}>
+                  <AddShoppingCartIcon /> Add to Cart
+                </button>
+              </div>
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 };

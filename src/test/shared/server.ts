@@ -1,6 +1,7 @@
 import { rest } from "msw";
 import { setupServer } from "msw/node";
 import { CreateProduct, ProductType } from "../../types/product";
+import jwt from "jsonwebtoken"
 
 const products = [
   {
@@ -53,6 +54,41 @@ const products = [
       "https://api.lorem.space/image/shoes?w=640&h=480&r=7084",
       "https://api.lorem.space/image/shoes?w=640&h=480&r=1396",
     ],
+  },
+];
+
+const users = [
+  {
+    id: 1,
+    email: "john@mail.com",
+    password: "changeme",
+    name: "Jhon",
+    role: "customer",
+    avatar: "https://api.lorem.space/image/face?w=640&h=480&r=6440",
+  },
+  {
+    id: 2,
+    email: "maria@mail.com",
+    password: "12345",
+    name: "Maria",
+    role: "customer",
+    avatar: "https://api.lorem.space/image/face?w=640&h=480&r=1901",
+  },
+  {
+    id: 3,
+    email: "admin@mail.com",
+    password: "admin123",
+    name: "Admin",
+    role: "admin",
+    avatar: "https://api.lorem.space/image/face?w=640&h=480&r=7019",
+  },
+  {
+    id: 4,
+    email: "john77@mail.com",
+    password: "changeme",
+    name: "Jhon77",
+    role: "customer",
+    avatar: "https://api.lorem.space/image/face?w=640&h=480&r=6440",
   },
 ];
 
@@ -111,6 +147,9 @@ const handler = [
       return res(ctx.status(404, "Data not found"));
     }
   ),
+  rest.get("https://api.escuelajs.co/api/v1/users", (req, res, ctx) => {
+    return res(ctx.json(users));
+  }),
 ];
 
 const server = setupServer(...handler);
