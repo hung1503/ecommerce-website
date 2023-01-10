@@ -1,6 +1,9 @@
 import { AnyAction, ThunkMiddleware } from "@reduxjs/toolkit";
 import { ToolkitStore } from "@reduxjs/toolkit/dist/configureStore";
-import { fetchAllUsers, userLogin } from "../../reducers/userReducer";
+import {
+  fetchAllUsers,
+  authenticalCredential,
+} from "../../redux/reducers/userReducer";
 import { createStore, RootState } from "../../redux/store";
 import server from "../shared/server";
 let store: ToolkitStore<
@@ -24,13 +27,13 @@ beforeEach(() => {
 describe("Test all action of user reducer", () => {
   test("return all user", async () => {
     await store.dispatch(fetchAllUsers());
-    expect(store.getState().user.length).toBe(4);
+    expect(store.getState().user.userList.length).toBe(4);
   });
   test("login sucessfully", async () => {
     const user = {
       email: "admin@mail.com",
       password: "admin123",
     };
-    await store.dispatch(userLogin(user));
+    await store.dispatch(authenticalCredential(user));
   });
 });

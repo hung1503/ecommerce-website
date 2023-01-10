@@ -8,7 +8,7 @@ import {
   sortName,
   sortPrice,
   updateProduct,
-} from "../../reducers/productReducer";
+} from "../../redux/reducers/productReducer";
 import { createStore, RootState } from "../../redux/store";
 import { CreateProduct, ProductType } from "../../types/product";
 import server from "../shared/server";
@@ -95,54 +95,63 @@ describe("Test all action of products reducer", () => {
     expect(store.getState().products.find((p) => p.id === 1)?.price).toBe(1503);
   });
   test("create product with form", async () => {
-    const images: File[] = [
-      {
-        lastModified: 0,
-        name: "test-file",
-        webkitRelativePath: "",
-        size: 0,
-        type: "",
-        arrayBuffer: function (): Promise<ArrayBuffer> {
-          throw new Error("Function not implemented.");
-        },
-        slice: function (
-          start?: number | undefined,
-          end?: number | undefined,
-          contentType?: string | undefined
-        ): Blob {
-          throw new Error("Function not implemented.");
-        },
-        stream: function () {
-          throw new Error("Function not implemented.");
-        },
-        text: function (): Promise<string> {
-          throw new Error("Function not implemented.");
-        },
+    const images: FileList = {
+      length: 0,
+      item: function (index: number): File | null {
+        throw new Error("Function not implemented.");
       },
-      {
-        lastModified: 0,
-        name: "test-file2",
-        webkitRelativePath: "",
-        size: 0,
-        type: "",
-        arrayBuffer: function (): Promise<ArrayBuffer> {
-          throw new Error("Function not implemented.");
-        },
-        slice: function (
-          start?: number | undefined,
-          end?: number | undefined,
-          contentType?: string | undefined
-        ): Blob {
-          throw new Error("Function not implemented.");
-        },
-        stream: function () {
-          throw new Error("Function not implemented.");
-        },
-        text: function (): Promise<string> {
-          throw new Error("Function not implemented.");
-        },
+      [Symbol.iterator]: function (): IterableIterator<File> {
+        throw new Error("Function not implemented.");
       },
-    ];
+    };
+    // const images: File[] = [
+    //   {
+    //     lastModified: 0,
+    //     name: "test-file",
+    //     webkitRelativePath: "",
+    //     size: 0,
+    //     type: "",
+    //     arrayBuffer: function (): Promise<ArrayBuffer> {
+    //       throw new Error("Function not implemented.");
+    //     },
+    //     slice: function (
+    //       start?: number | undefined,
+    //       end?: number | undefined,
+    //       contentType?: string | undefined
+    //     ): Blob {
+    //       throw new Error("Function not implemented.");
+    //     },
+    //     stream: function () {
+    //       throw new Error("Function not implemented.");
+    //     },
+    //     text: function (): Promise<string> {
+    //       throw new Error("Function not implemented.");
+    //     },
+    //   },
+    //   {
+    //     lastModified: 0,
+    //     name: "test-file2",
+    //     webkitRelativePath: "",
+    //     size: 0,
+    //     type: "",
+    //     arrayBuffer: function (): Promise<ArrayBuffer> {
+    //       throw new Error("Function not implemented.");
+    //     },
+    //     slice: function (
+    //       start?: number | undefined,
+    //       end?: number | undefined,
+    //       contentType?: string | undefined
+    //     ): Blob {
+    //       throw new Error("Function not implemented.");
+    //     },
+    //     stream: function () {
+    //       throw new Error("Function not implemented.");
+    //     },
+    //     text: function (): Promise<string> {
+    //       throw new Error("Function not implemented.");
+    //     },
+    //   },
+    // ];
     const product: CreateProduct = {
       title: "test",
       price: 100,

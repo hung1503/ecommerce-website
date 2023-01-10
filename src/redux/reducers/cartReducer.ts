@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { CartType } from "../types/cart";
+import { CartType } from "../../types/cart";
 
 export const getFromLocalStorage = (): CartType[] => {
   const cart = localStorage.getItem("cart");

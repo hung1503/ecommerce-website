@@ -2,11 +2,11 @@ import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { useAppDispatch, useAppSelector } from "../../hooks/reduxHook";
-import { userLogout } from "../../reducers/userReducer";
+import { userLogout } from "../../redux/reducers/userReducer";
 import avatar from "../../assets/images/avatar.jpg";
 const Navbar = () => {
   const cart = useAppSelector((state) => state.cart);
-  const user = useAppSelector((state) => state.user);
+  const user = useAppSelector((state) => state.user.currentUser);
   const nav = useNavigate();
   const dispatch = useAppDispatch();
   const isLogIn = localStorage.getItem("loggedInUser");
@@ -41,18 +41,17 @@ const Navbar = () => {
             </div>
           ) : (
             <div>
-              {user.map((user) => {
-                return (
-                  <img
-                    key={user.id}
-                    className="avatar-pic"
-                    src={user.avatar}
-                    alt="user-avatar"
-                  />
-                );
-              })}
+              {user && (
+                <img
+                  key={user.id}
+                  className="avatar-pic"
+                  src={user.avatar}
+                  alt="user-avatar"
+                />
+              )}
               <div className="dropdown-content">
                 <Link to="/profile">Profile</Link>
+                <Link to="/createProduct">Create new product</Link>
                 <button type="submit" onClick={() => handleLogOut()}>
                   Log out
                 </button>

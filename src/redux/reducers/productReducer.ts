@@ -4,9 +4,9 @@ import {
   CreateProductWithForm,
   ProductType,
   UpdateProduct,
-} from "../types/product";
-import axios, { AxiosResponse } from "axios";
-import axiosInstance from "../common/axiosInstance";
+} from "../../types/product";
+import axios, { AxiosError, AxiosResponse } from "axios";
+import axiosInstance from "../../common/axiosInstance";
 
 const initialState: ProductType[] = [];
 
@@ -71,21 +71,27 @@ export const updateProduct = createAsyncThunk(
 export const createProductWithForm = createAsyncThunk(
   "createProductWithForm",
   async ({ images, product }: CreateProductWithForm) => {
-    let location: string[] = [];
     try {
-      for (let i = 0; i < images.length; i++) {
-        const resImg = await axiosInstance.post("/files/upload", images[i]);
-        const img = await resImg.data.location;
-        location.push(img);
-      }
+      const response = await axios.post(
+        "https://api.escuelajs.co/api/v1/files/upload",
+        { file: images && images[0] },
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+      const img = await response.data.location;
       const resProduct = await axiosInstance.post("/products/", {
         ...product,
-        images: [...product.images, ...location],
+        images: [img],
       });
       const data = await resProduct.data;
+      console.log("data", data);
       return data;
-    } catch (error: any) {
-      console.log(error.response.status, error.response.statusText);
+    } catch (e: any) {
+      const error = e as AxiosError;
+      return error;
     }
   }
 );

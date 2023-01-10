@@ -5,7 +5,7 @@ import {
   decreaseQuantity,
   increaseQuantity,
   removeFromCart,
-} from "../reducers/cartReducer";
+} from "../redux/reducers/cartReducer";
 import { CartType } from "../types/cart";
 
 const CartPage = () => {

@@ -1,25 +1,31 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../hooks/reduxHook";
-import { userLogin } from "../../reducers/userReducer";
+import {
+  authenticalCredential,
+  loginUser,
+} from "../../redux/reducers/userReducer";
 
 const LoginForm = () => {
-  const userInfo = useAppSelector((state) => state.user);
   const dispatch = useAppDispatch();
   const nav = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const accessToken = localStorage.getItem("loggedInUser");
+  if (accessToken) {
+    dispatch(loginUser(accessToken));
+    nav("/");
+  }
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     dispatch(
-      userLogin({
+      authenticalCredential({
         email: email,
         password: password,
       })
     );
     setEmail("");
     setPassword("");
-    nav("/");
   };
   return (
     <div>

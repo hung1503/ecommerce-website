@@ -23,6 +23,11 @@ export interface UpdateProduct {
 }
 
 export interface CreateProductWithForm {
-  images: File[];
+  images: FileList;
   product: CreateProduct;
+}
+
+export interface EditProductType {
+  togglePopUp: () => void;
+  product: ProductType;
 }

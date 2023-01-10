@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useAppSelector } from "../../hooks/reduxHook";
 
 const Profile = () => {
-  const user = useAppSelector((state) => state.user);
+  const user = useAppSelector((state) => state.user.currentUser);
   console.log(user);
   const nav = useNavigate();
   useEffect(() => {
@@ -16,15 +16,13 @@ const Profile = () => {
   return (
     <div>
       <h1>Profile</h1>
-      {user.map((user) => {
-        return (
-          <div key={user.id}>
-            <img src={user.avatar} alt={user.name} />
-            <p>Name: {user.name}</p>
-            <p>Email: {user.email}</p>
-          </div>
-        );
-      })}
+      {user && (
+        <div key={user.id}>
+          <img src={user.avatar} alt={user.name} />
+          <p>Name: {user.name}</p>
+          <p>Email: {user.email}</p>
+        </div>
+      )}
     </div>
   );
 };

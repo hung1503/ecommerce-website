@@ -3,14 +3,14 @@ import { Link } from "react-router-dom";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 
 import { useAppDispatch, useAppSelector } from "../hooks/reduxHook";
-import { addToCart } from "../reducers/cartReducer";
-import { fetchAllCategories } from "../reducers/categoryReducer";
+import { addToCart } from "../redux/reducers/cartReducer";
+import { fetchAllCategories } from "../redux/reducers/categoryReducer";
 import {
   fetchAllProducts,
   fetchFilteredProducts,
   sortName,
   sortPrice,
-} from "../reducers/productReducer";
+} from "../redux/reducers/productReducer";
 import { ProductType } from "../types/product";
 
 const ProductsListPage = () => {

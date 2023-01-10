@@ -6,6 +6,10 @@ export interface UserType {
   role: "customer" | "admin";
   avatar: string;
 }
+export interface UserInitialState {
+  userList: UserType[];
+  currentUser?: UserType;
+}
 
 export interface UserLogin {
   email: string;
@@ -29,7 +33,13 @@ export interface CreateUser {
   avatar: string;
 }
 
+export interface CreateUserForm {
+  name: string;
+  email: string;
+  password: string;
+}
+
 export interface CreateUserWithFile {
-  image: File;
-  user: CreateUser;
+  image: FileList;
+  user: CreateUserForm;
 }
