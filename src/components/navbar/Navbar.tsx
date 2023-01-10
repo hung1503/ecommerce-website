@@ -52,9 +52,9 @@ const Navbar = () => {
               <div className="dropdown-content">
                 <Link to="/profile">Profile</Link>
                 <Link to="/createProduct">Create new product</Link>
-                <button type="submit" onClick={() => handleLogOut()}>
+                <div className="logoutBtn" onClick={() => handleLogOut()}>
                   Log out
-                </button>
+                </div>
               </div>
             </div>
           )}

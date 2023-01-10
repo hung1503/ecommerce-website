@@ -47,39 +47,62 @@ const SingleProductPage = () => {
 
   if (!product) return <h2>Loading...</h2>;
   return (
-    <div>
-      <Link to="/">Home</Link>/<Link to="/products">Products</Link>/
-      <Link to={`/products/${id}`}>{product?.title}</Link>
-      <h1>{product?.title}</h1>
-      <img src={product?.images[0]} alt={product?.title} />
-      <p>{product?.description}</p>
-      <h3>${product?.price}</h3>
-      <label htmlFor="quantity">Quantity:</label>
-      <input
-        type="number"
-        id="quantity"
-        value={quantity}
-        onChange={({ target }) => setQuantity(+target.value)}
-      />
-      <div>
-        <button type="submit" onClick={() => handleClick(product)}>
-          Add to Cart
-        </button>
+    <div className="singleProduct">
+      <div className="singleProduct-route">
+        <Link to="/">Home</Link>/<Link to="/products">Products</Link>/
+        <Link to={`/products/${id}`}>{product?.title}</Link>
       </div>
-      {isAdmin === "admin" && (
-        <div>
-          <button type="submit" onClick={() => handleDelete(product?.id)}>
-            Delete the product
-          </button>
-          <button type="submit" onClick={togglePopUp}>
-            Edit product
-          </button>
+
+      <div className="singleProduct-content">
+        <div className="singleProduct-content-img">
+          <img src={product?.images[0]} alt={product?.title} />
         </div>
-      )}
-      {isOpen && <EditProduct togglePopUp={togglePopUp} product={product} />}
-      <p>
-        Have a question? <Link to="/contacts">Ask us here</Link>
-      </p>
+        <div className="singleProduct-content-info">
+          <h1>{product?.title}</h1>
+          <p>{product?.description}</p>
+          <p>
+            Price: <span className="price-style">${product?.price}</span>
+          </p>
+          <label htmlFor="quantity">Quantity:</label>
+          <input
+            type="number"
+            id="quantity"
+            value={quantity}
+            onChange={({ target }) => setQuantity(+target.value)}
+          />
+          <button
+            type="submit"
+            className="singleProduct-button"
+            onClick={() => handleClick(product)}
+          >
+            Add to Cart
+          </button>
+          {isAdmin === "admin" && (
+            <div>
+              <button
+                type="submit"
+                className="singleProduct-button"
+                onClick={() => handleDelete(product?.id)}
+              >
+                Delete the product
+              </button>
+              <button
+                type="submit"
+                className="singleProduct-button"
+                onClick={togglePopUp}
+              >
+                Edit product
+              </button>
+            </div>
+          )}
+          {isOpen && (
+            <EditProduct togglePopUp={togglePopUp} product={product} />
+          )}
+          <p>
+            Have a question? <Link to="/contacts">Ask us here</Link>
+          </p>
+        </div>
+      </div>
     </div>
   );
 };

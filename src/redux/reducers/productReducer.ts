@@ -155,7 +155,6 @@ const productSlice = createSlice({
         } else if (!action.payload) {
           return state;
         } else {
-          console.log("action.payload", action.payload);
           return action.payload;
         }
       })

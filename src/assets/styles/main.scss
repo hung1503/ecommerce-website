@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@300;400&family=Montserrat&display=swap");
+
 @import "abstracts/variables/fonts";
 @import "abstracts/variables/colors";
 @import "abstracts/mixins";
@@ -8,6 +10,9 @@
 @import "sections/footer";
 @import "sections/productList";
 @import "sections/editProduct";
+@import "sections/pagination";
+@import "sections/singleProduct";
+
 body,
 html {
   font-family: $font-family-1;

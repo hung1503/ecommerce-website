@@ -12,10 +12,14 @@ import {
   sortPrice,
 } from "../redux/reducers/productReducer";
 import { ProductType } from "../types/product";
+import Pagination from "../components/pagination/Pagination";
 
 const ProductsListPage = () => {
   const [sort, setSort] = useState("");
   const [search, setSearch] = useState("");
+  const [category, setCategory] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [productsPerPage, setProductsPerPage] = useState(20);
   const products = useAppSelector((state) =>
     state.products.filter((item) =>
       item.title.toLowerCase().includes(search.toLowerCase())
@@ -42,8 +46,14 @@ const ProductsListPage = () => {
     }
   };
 
-  const handleCategory = (category: number) => {
-    dispatch(fetchFilteredProducts(category));
+  const handleCategory = (e: React.ChangeEvent<HTMLInputElement>) => {
+    dispatch(fetchFilteredProducts(+e.target.value));
+    setCategory(+e.target.value);
+  };
+
+  const handleClearFilter = () => {
+    dispatch(fetchAllProducts());
+    setCategory(0);
   };
 
   const handleAddtoCart = (product: ProductType) => {
@@ -55,10 +65,17 @@ const ProductsListPage = () => {
       })
     );
   };
+
+  const lastProductIndex = currentPage * productsPerPage;
+  const firstProductIndex = lastProductIndex - productsPerPage;
+  const currentProducts = products.slice(firstProductIndex, lastProductIndex);
+
   return (
     <div className="productListContainer">
-      <Link to="/">Home</Link>/<Link to="/products">Products</Link>
-      <h1>Products</h1>
+      <div className="productListContainer-route">
+        <Link to="/">Home</Link>/<Link to="/products">Products</Link>
+      </div>
+      <h1 className="pageTitle">Products</h1>
       <div className="productListContainer-sorting">
         <form className="productListContainer-sorting-search">
           <input
@@ -86,24 +103,32 @@ const ProductsListPage = () => {
         <div className="productWrapper-categories">
           <h2>Filter</h2>
           <h3>Categories</h3>
-          {categories.slice(0, 5).map((category) => {
-            return (
-              <div key={category.id}>
-                <button
-                  type="submit"
-                  onClick={() => handleCategory(category.id)}
-                >
-                  {category.name}
-                </button>
-              </div>
-            );
-          })}
+          <div>
+            {categories.slice(0, 5).map((item) => {
+              return (
+                <div key={item.id}>
+                  <input
+                    type="radio"
+                    id={item.name}
+                    name={item.name}
+                    value={item.id}
+                    onChange={(e) => handleCategory(e)}
+                    checked={category === item.id}
+                  />
+                  <label htmlFor={item.name}>{item.name}</label>
+                </div>
+              );
+            })}
+            <button type="submit" onClick={() => handleClearFilter()}>
+              Clear filter
+            </button>
+          </div>
         </div>
         <div className="productWrapper-products">
           {!products ? (
             <h2>Loading...</h2>
           ) : (
-            products.map((item) => {
+            currentProducts.map((item) => {
               return (
                 <div className="productCard" key={item.id}>
                   <Link to={"/products/" + item.id}>
@@ -126,6 +151,12 @@ const ProductsListPage = () => {
           )}
         </div>
       </div>
+      <Pagination
+        totalProducts={products.length}
+        productsPerPage={productsPerPage}
+        setCurrentPage={setCurrentPage}
+        currentPage={currentPage}
+      />
     </div>
   );
 };

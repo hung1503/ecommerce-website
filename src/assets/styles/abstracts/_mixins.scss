@@ -1,0 +1,15 @@
+@mixin singleProductBtn {
+  margin: 20px;
+  border-radius: 5px;
+  padding: 10px 20px;
+  background-color: rgb(255, 255, 255);
+  border: 1px solid rgb(145, 142, 142);
+  cursor: pointer;
+  &:hover {
+    background-color: rgb(145, 142, 142);
+    color: #fff;
+  }
+  &:active {
+    background-color: rgb(116, 112, 112);
+  }
+}

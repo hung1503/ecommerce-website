@@ -1,0 +1,50 @@
+.singleProduct {
+  &-route {
+    display: flex;
+    margin: 10px 0 40px;
+    & a {
+      text-decoration: none;
+      color: $txtColor;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  &-content {
+    display: grid;
+    grid-template-areas: "img info";
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 2rem;
+    &-img {
+      grid-area: img;
+      & img {
+        width: 85%;
+        display: block;
+      }
+    }
+    &-info {
+      grid-area: info;
+      & input {
+        border: none;
+        border-bottom: 1px solid $txtColor;
+        background-color: transparent;
+        text-align: center;
+        width: 50px;
+        margin: 0 10px;
+        &:focus {
+          outline: none;
+        }
+      }
+    }
+  }
+}
+
+.singleProduct-button {
+  @include singleProductBtn;
+}
+
+.price-style {
+  font-weight: bold;
+  font-size: 1.3rem;
+}

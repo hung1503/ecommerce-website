@@ -10,6 +10,7 @@
   box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.75);
   & a {
     text-decoration: none;
+    color: $txtColor;
   }
 }
 
@@ -57,9 +58,17 @@
     padding: 12px 16px;
     text-decoration: none;
     display: block;
+    &:hover {
+      background-color: #ddd;
+    }
   }
-  & a:hover {
-    background-color: #ddd;
+  & .logoutBtn {
+    cursor: pointer;
+    display: flex;
+    padding: 12px 16px;
+    &:hover {
+      background-color: #ddd;
+    }
   }
 }
 
