@@ -1,6 +1,7 @@
 import { rest } from "msw";
 import { setupServer } from "msw/node";
 import { CreateProduct, ProductType } from "../../types/product";
+import jwt from "jsonwebtoken";
 
 const products = [
   {
@@ -91,6 +92,24 @@ const users = [
   },
 ];
 
+const categories = [
+  {
+    id: 1,
+    name: "Clothes",
+    image: "https://api.lorem.space/image/fashion?w=640&h=480&r=6834",
+  },
+  {
+    id: 2,
+    name: "Electronics",
+    image: "https://api.lorem.space/image/fashion?w=640&h=480&r=6834",
+  },
+  {
+    id: 3,
+    name: "Furniture",
+    image: "https://api.lorem.space/image/fashion?w=640&h=480&r=6834",
+  },
+];
+
 const handler = [
   rest.get("https://api.escuelajs.co/api/v1/products", (req, res, ctx) => {
     return res(ctx.json(products));
@@ -123,12 +142,12 @@ const handler = [
   rest.post(
     "https://api.escuelajs.co/api/v1/files/upload",
     async (req, res, ctx) => {
-      const file: File = await req.json();
+      const file: FileList = await req.json();
       return res(
         ctx.json({
-          originalname: file.name,
-          filename: file.name,
-          location: `https://api.escuelajs.co/api/v1/files/${file.name}`,
+          originalname: file[0].name,
+          filename: file[0].name,
+          location: `https://api.escuelajs.co/api/v1/files/${file[0].name}`,
         })
       );
     }
@@ -148,6 +167,39 @@ const handler = [
   ),
   rest.get("https://api.escuelajs.co/api/v1/users", (req, res, ctx) => {
     return res(ctx.json(users));
+  }),
+  rest.post(
+    "https://api.escuelajs.co/api/v1/auth/login",
+    async (req, res, ctx) => {
+      const { email, password } = await req.json();
+      const foundUser = users.find(
+        (user) => user.email === email && user.password === password
+      );
+      if (foundUser) {
+        const access_token = jwt.sign(foundUser, "anykey");
+        return res(ctx.json({ access_token }));
+      } else {
+        return res(ctx.status(401, "Unauthorize"));
+      }
+    }
+  ),
+  rest.get("https://api.escuelajs.co/api/v1/auth/profile", (req, res, ctx) => {
+    const access_tokenArr = req.headers.get("authorization")?.split(" ");
+    try {
+      if (access_tokenArr) {
+        const access_token = access_tokenArr[1];
+        const foundUser = jwt.verify(access_token, "anykey");
+        return res(ctx.json({ foundUser }));
+      } else {
+        return res(ctx.status(401, "Unauthorize"));
+      }
+    } catch (e: any) {
+      console.log(e);
+      return res(ctx.json(e));
+    }
+  }),
+  rest.get("https://api.escuelajs.co/api/v1/categories", (req, res, ctx) => {
+    return res(ctx.json(categories));
   }),
 ];
 

@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { AxiosError } from "axios";
 import axiosInstance from "../../common/axiosInstance";
 import { CategoryType } from "../../types/category";
 
@@ -9,10 +10,11 @@ export const fetchAllCategories = createAsyncThunk(
   async () => {
     try {
       const response = await axiosInstance.get("/categories");
-      const data: CategoryType[] | Error = await response.data;
+      const data: CategoryType[] = await response.data;
       return data;
-    } catch (error: any) {
-      throw new Error(error.message);
+    } catch (e: any) {
+      const error = e as AxiosError;
+      return error;
     }
   }
 );

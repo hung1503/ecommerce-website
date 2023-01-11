@@ -35,5 +35,19 @@ describe("Test all action of user reducer", () => {
       password: "admin123",
     };
     await store.dispatch(authenticalCredential(user));
+    const currentUser = store.getState().user.currentUser;
+    expect(currentUser).toBeDefined();
   });
+  // test("register succesfully", async () => {
+  //   const image: FileList = {
+  //     0: new File([""], "filename", { type: "image/png" }),
+  //     length: 1,
+  //     item: (index: number) => {
+  //       return new File([""], "filename", { type: "image/png" });
+  //     },
+  //     [Symbol.iterator]: function (): IterableIterator<File> {
+  //       throw new Error("Function not implemented.");
+  //     },
+  //   };
+  // });
 });
