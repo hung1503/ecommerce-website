@@ -19,7 +19,6 @@ const cartSlice = createSlice({
   initialState: initialState,
   reducers: {
     addToCart: (state, action: PayloadAction<CartType>) => {
-      console.log(action.payload);
       const localStorageData = getFromLocalStorage();
       const foundProduct = localStorageData.find(
         (item) => item.product.id === action.payload.product.id
