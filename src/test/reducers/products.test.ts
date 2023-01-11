@@ -10,7 +10,7 @@ import {
   updateProduct,
 } from "../../redux/reducers/productReducer";
 import { createStore, RootState } from "../../redux/store";
-import { CreateProduct, ProductType } from "../../types/product";
+import { CreateProduct } from "../../types/product";
 import server from "../shared/server";
 
 let store: ToolkitStore<

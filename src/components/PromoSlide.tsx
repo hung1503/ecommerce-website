@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import pic3 from "../assets/images/clothes.jpg";
 
 const PromoSlide = () => {

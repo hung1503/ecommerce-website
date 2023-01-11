@@ -19,7 +19,7 @@ const ProductsListPage = () => {
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
-  const [productsPerPage, setProductsPerPage] = useState(20);
+  const [productsPerPage] = useState(20);
   const products = useAppSelector((state) =>
     state.products.filter((item) =>
       item.title.toLowerCase().includes(search.toLowerCase())
