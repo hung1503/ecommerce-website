@@ -14,7 +14,7 @@ const getFromLocalStorage = () => {
   if (userSession) {
     return JSON.parse(userSession).currentUser;
   } else {
-    return null;
+    return undefined;
   }
 };
 

@@ -1,6 +1,6 @@
 import React from "react";
-import Carousel from "../components/carousel/Carousel";
-import PromoSlide from "../components/promoSlides/PromoSlide";
+import Carousel from "../components/Carousel";
+import PromoSlide from "../components/PromoSlide";
 
 const HomePage = () => {
   return (

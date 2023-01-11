@@ -12,7 +12,7 @@ import {
   sortPrice,
 } from "../redux/reducers/productReducer";
 import { ProductType } from "../types/product";
-import Pagination from "../components/pagination/Pagination";
+import Pagination from "../components/Pagination";
 
 const ProductsListPage = () => {
   const [sort, setSort] = useState("");

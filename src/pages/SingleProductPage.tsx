@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import EditProduct from "../components/editProduct/EditProduct";
+import EditProduct from "../components/EditProduct";
 import { useAppDispatch, useAppSelector } from "../hooks/reduxHook";
 import { addToCart } from "../redux/reducers/cartReducer";
 import {

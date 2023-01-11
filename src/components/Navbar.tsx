@@ -1,9 +1,9 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import { useAppDispatch, useAppSelector } from "../../hooks/reduxHook";
-import { userLogout } from "../../redux/reducers/userReducer";
-import avatar from "../../assets/images/avatar.jpg";
+import { useAppDispatch, useAppSelector } from "../hooks/reduxHook";
+import { userLogout } from "../redux/reducers/userReducer";
+import avatar from "../assets/images/avatar.jpg";
 const Navbar = () => {
   const cart = useAppSelector((state) => state.cart);
   const user = useAppSelector((state) => state.user.currentUser);

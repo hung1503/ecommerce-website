@@ -1,0 +1,36 @@
+.login-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-section {
+  display: grid;
+  grid-template-areas: "login register";
+  gap: 20px;
+  &-form {
+    grid-area: "login";
+    &_label {
+      @include labelForm;
+      margin: 10px 0;
+    }
+    &_input {
+      @include inputTextForm;
+    }
+    &_button {
+      display: block;
+      @include singleProductBtn;
+      margin: 20px 0;
+    }
+  }
+  &-register {
+    grid-area: "register";
+    & a {
+      text-decoration: none;
+      color: #333333;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}

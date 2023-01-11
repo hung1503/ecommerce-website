@@ -4,14 +4,20 @@
 @import "abstracts/variables/colors";
 @import "abstracts/mixins";
 
-@import "sections/navbar";
-@import "sections/promoSlide";
-@import "sections/carousel";
-@import "sections/footer";
-@import "sections/productList";
-@import "sections/editProduct";
-@import "sections/pagination";
-@import "sections/singleProduct";
+@import "sections/components/navbar";
+@import "sections/components/promoSlide";
+@import "sections/components/carousel";
+@import "sections/components/footer";
+@import "sections/components/editProduct";
+@import "sections/components/pagination";
+
+@import "sections/pages/singleProduct";
+@import "sections/pages/profile";
+@import "sections/pages/productList";
+@import "sections/pages/createProduct";
+@import "sections/pages/login";
+@import "sections/pages/register";
+@import "sections/pages/cart";
 
 body,
 html {

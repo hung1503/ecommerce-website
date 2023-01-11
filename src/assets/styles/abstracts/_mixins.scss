@@ -13,3 +13,23 @@
     background-color: rgb(116, 112, 112);
   }
 }
+
+@mixin labelForm {
+  align-items: center;
+  display: flex;
+  width: 150px;
+  color: #333333;
+  font-size: 14px;
+  line-height: 24px;
+}
+
+@mixin inputTextForm {
+  box-sizing: border-box;
+  border: 1px solid #e6e6e6;
+  border-radius: 15px;
+  height: 39px;
+  width: 300px;
+  &:focus {
+    outline: none;
+  }
+}

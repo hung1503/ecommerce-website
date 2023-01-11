@@ -1,5 +1,5 @@
 import React from "react";
-import { PaginationType } from "../../types/pagination";
+import { PaginationType } from "../types/pagination";
 
 const Pagination = ({
   totalProducts,

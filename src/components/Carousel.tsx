@@ -2,10 +2,10 @@ import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 
-import { useAppDispatch, useAppSelector } from "../../hooks/reduxHook";
-import { fetchAllProducts } from "../../redux/reducers/productReducer";
-import { ProductType } from "../../types/product";
-import { addToCart } from "../../redux/reducers/cartReducer";
+import { useAppDispatch, useAppSelector } from "../hooks/reduxHook";
+import { fetchAllProducts } from "../redux/reducers/productReducer";
+import { ProductType } from "../types/product";
+import { addToCart } from "../redux/reducers/cartReducer";
 
 const Carousel = () => {
   const products = useAppSelector((state) => state.products);

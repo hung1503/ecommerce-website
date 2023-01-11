@@ -3,18 +3,18 @@ import { Routes, Route } from "react-router-dom";
 
 import "./assets/styles/main.scss";
 
-import Footer from "./components/footer/Footer";
-import Navbar from "./components/navbar/Navbar";
+import Footer from "./components/Footer";
+import Navbar from "./components/Navbar";
 import HomePage from "./pages/HomePage";
 import ProductsListPage from "./pages/ProductsListPage";
 import CartPage from "./pages/CartPage";
 import SingleProductPage from "./pages/SingleProductPage";
 import ContactPage from "./pages/ContactPage";
 import AboutPage from "./pages/AboutPage";
-import LoginForm from "./components/loginForm/LoginForm";
-import RegisterForm from "./components/registerForm/RegisterForm";
-import Profile from "./components/profile/Profile";
-import CreateProductForm from "./components/createProductForm/CreateProductForm";
+import LoginForm from "./pages/LoginForm";
+import RegisterForm from "./pages/RegisterForm";
+import Profile from "./pages/Profile";
+import CreateProductForm from "./pages/CreateProductForm";
 
 const App = () => {
   return (

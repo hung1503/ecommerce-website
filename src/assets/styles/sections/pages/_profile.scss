@@ -1,0 +1,22 @@
+.profile-container {
+  display: flex;
+  flex-direction: column;
+  & h1 {
+    margin-left: 50px;
+  }
+}
+
+.profile-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  &-pic {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    margin: 0 auto;
+    margin-bottom: 1rem;
+    size: cover;
+  }
+}

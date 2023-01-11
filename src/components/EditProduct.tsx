@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAppDispatch } from "../../hooks/reduxHook";
-import { updateProduct } from "../../redux/reducers/productReducer";
-import { EditProductType } from "../../types/product";
+import { useAppDispatch } from "../hooks/reduxHook";
+import { updateProduct } from "../redux/reducers/productReducer";
+import { EditProductType } from "../types/product";
 
 const EditProduct = ({ togglePopUp, product }: EditProductType) => {
   const [title, setTitle] = useState(product.title);

@@ -1,0 +1,50 @@
+.createProduct-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.createProduct-form {
+  display: flex;
+  flex-direction: column;
+  & h2 {
+    margin-bottom: 2rem;
+  }
+  &-input {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    &_label {
+      @include labelForm;
+    }
+    &_input {
+      @include inputTextForm;
+    }
+    &_textarea {
+      box-sizing: border-box;
+      border: 1px solid #e6e6e6;
+      border-radius: 15px;
+      height: 100px;
+      width: 300px;
+      &:focus {
+        outline: none;
+      }
+    }
+    &_labelFile {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 15px;
+      border: 1px solid #e6e6e6;
+      padding: 6px 12px;
+      cursor: pointer;
+    }
+    &_file {
+      display: none;
+    }
+  }
+  &-button {
+    @include singleProductBtn;
+  }
+}

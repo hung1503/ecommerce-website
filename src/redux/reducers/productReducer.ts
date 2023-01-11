@@ -15,7 +15,7 @@ export const fetchAllProducts = createAsyncThunk(
   async () => {
     try {
       const response = await axiosInstance.get("/products");
-      const data: ProductType[] | Error = await response.data;
+      const data: ProductType[] = await response.data;
       return data;
     } catch (error: any) {
       throw new Error(error.message);
@@ -30,7 +30,7 @@ export const fetchFilteredProducts = createAsyncThunk(
       const response = await axiosInstance.get(
         `/products/?categoryId=${filter}`
       );
-      const data: ProductType[] | Error = await response.data;
+      const data: ProductType[] = await response.data;
       return data;
     } catch (error: any) {
       throw new Error(error.message);
@@ -71,23 +71,27 @@ export const updateProduct = createAsyncThunk(
 export const createProductWithForm = createAsyncThunk(
   "createProductWithForm",
   async ({ images, product }: CreateProductWithForm) => {
+    let location = [];
     try {
-      const response = await axios.post(
-        "https://api.escuelajs.co/api/v1/files/upload",
-        { file: images && images[0] },
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
-      const img = await response.data.location;
+      for (let i = 0; i < images.length; i++) {
+        const response = await axios.post(
+          "https://api.escuelajs.co/api/v1/files/upload",
+          { file: images && images[i] },
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
+        const img = await response.data.location;
+        location.push(img);
+      }
+
       const resProduct = await axiosInstance.post("/products/", {
         ...product,
-        images: [img],
+        images: [...location],
       });
       const data = await resProduct.data;
-      console.log("data", data);
       return data;
     } catch (e: any) {
       const error = e as AxiosError;
