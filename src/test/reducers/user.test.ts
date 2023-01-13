@@ -3,8 +3,10 @@ import { ToolkitStore } from "@reduxjs/toolkit/dist/configureStore";
 import {
   fetchAllUsers,
   authenticalCredential,
+  userUpdate,
 } from "../../redux/reducers/userReducer";
 import { createStore, RootState } from "../../redux/store";
+import { UserUpdate } from "../../types/user";
 import server from "../shared/server";
 let store: ToolkitStore<
   RootState,
@@ -50,4 +52,18 @@ describe("Test all action of user reducer", () => {
   //     },
   //   };
   // });
+  test("update user", async () => {
+    await store.dispatch(fetchAllUsers());
+    const updatedUser: UserUpdate = {
+      id: 1,
+      update: {
+        email: "new@mail.com",
+        name: "new",
+      },
+    };
+    await store.dispatch(userUpdate(updatedUser));
+    const currentUser = store.getState().user.userList;
+    expect(currentUser[0].name).toBe("new");
+    expect(currentUser[0].email).toBe("new@mail.com");
+  });
 });

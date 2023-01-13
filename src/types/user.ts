@@ -43,3 +43,8 @@ export interface CreateUserWithFile {
   image: FileList;
   user: CreateUserForm;
 }
+
+export interface UserUpdate {
+  id: number;
+  update: Partial<UserType>;
+}

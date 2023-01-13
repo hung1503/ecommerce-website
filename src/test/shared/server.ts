@@ -2,6 +2,7 @@ import { rest } from "msw";
 import { setupServer } from "msw/node";
 import { CreateProduct, ProductType } from "../../types/product";
 import jwt from "jsonwebtoken";
+import { UserType } from "../../types/user";
 
 const products = [
   {
@@ -198,6 +199,22 @@ const handler = [
       return res(ctx.json(e));
     }
   }),
+  rest.put(
+    "https://api.escuelajs.co/api/v1/users/:id",
+    async (req, res, ctx) => {
+      const id = req.params.id;
+      const update: Partial<UserType> = await req.json();
+      const foundUser = users.find((user) => user.id === Number(id));
+      if (foundUser) {
+        const updatedUser = {
+          ...foundUser,
+          ...update,
+        };
+        return res(ctx.json(updatedUser));
+      }
+      return res(ctx.status(404, "Data not found"));
+    }
+  ),
   rest.get("https://api.escuelajs.co/api/v1/categories", (req, res, ctx) => {
     return res(ctx.json(categories));
   }),

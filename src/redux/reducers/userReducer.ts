@@ -7,6 +7,7 @@ import {
   UserLogin,
   UserLoginResponse,
   UserType,
+  UserUpdate,
 } from "../../types/user";
 
 const getFromLocalStorage = () => {
@@ -102,6 +103,20 @@ export const userRegister = createAsyncThunk(
   }
 );
 
+export const userUpdate = createAsyncThunk(
+  "userUpdate",
+  async ({ id, update }: UserUpdate) => {
+    try {
+      const response = await axiosInstance.put(`/users/${id}`, update);
+      const data = await response.data;
+      return data;
+    } catch (error: any) {
+      const err = error as AxiosError;
+      return err;
+    }
+  }
+);
+
 const userSlice = createSlice({
   name: "userSlice",
   initialState: initialState,
@@ -137,6 +152,18 @@ const userSlice = createSlice({
           state.userList.push(action.payload);
         }
         return state;
+      })
+      .addCase(userUpdate.fulfilled, (state, action) => {
+        if (action.payload instanceof AxiosError) {
+          return state;
+        }
+        const users = state.userList.map((user) => {
+          if (user.id === action.payload.id) {
+            return action.payload;
+          }
+          return user;
+        });
+        state.userList = users;
       });
   },
 });
