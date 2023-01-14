@@ -2,6 +2,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-top: 70px;
 }
 
 .login-section {
@@ -9,6 +10,9 @@
   grid-template-areas: "login register";
   gap: 20px;
   &-form {
+    & h3 {
+      font-size: 1.8rem;
+    }
     grid-area: "login";
     &_label {
       @include labelForm;
@@ -25,12 +29,17 @@
   }
   &-register {
     grid-area: "register";
-    & a {
+    & h3 {
+      font-size: 1.8rem;
+    }
+    &-btn {
+      @include singleProductBtn;
+      margin: 20px 0;
+      display: flex;
+      justify-content: center;
       text-decoration: none;
       color: #333333;
-      &:hover {
-        text-decoration: underline;
-      }
+      font-weight: bold;
     }
   }
 }

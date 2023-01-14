@@ -4,10 +4,11 @@ import {
   fetchAllUsers,
   authenticalCredential,
   userUpdate,
+  userRegister,
 } from "../../redux/reducers/userReducer";
 import { createStore, RootState } from "../../redux/store";
 import { UserUpdate } from "../../types/user";
-import server from "../shared/server";
+import userServer from "../shared/userServer";
 let store: ToolkitStore<
   RootState,
   AnyAction,
@@ -15,11 +16,11 @@ let store: ToolkitStore<
 >;
 
 beforeAll(() => {
-  server.listen();
+  userServer.listen();
 });
 
 afterAll(() => {
-  server.close();
+  userServer.close();
 });
 
 beforeEach(() => {
@@ -41,16 +42,50 @@ describe("Test all action of user reducer", () => {
     expect(currentUser).toBeDefined();
   });
   // test("register succesfully", async () => {
+  //   const file: File = {
+  //     name: "filename.jpg",
+  //     lastModified: 1673257925235,
+  //     webkitRelativePath: "",
+  //     size: 25233,
+  //     type: "image/jpeg",
+  //     arrayBuffer: function (): Promise<ArrayBuffer> {
+  //       throw new Error("Function not implemented.");
+  //     },
+  //     slice: function (
+  //       start?: number | undefined,
+  //       end?: number | undefined,
+  //       contentType?: string | undefined
+  //     ): Blob {
+  //       throw new Error("Function not implemented.");
+  //     },
+  //     stream: function () {
+  //       throw new Error("Function not implemented.");
+  //     },
+  //     text: function (): Promise<string> {
+  //       throw new Error("Function not implemented.");
+  //     },
+  //   };
   //   const image: FileList = {
-  //     0: new File([""], "filename", { type: "image/png" }),
+  //     0: file,
   //     length: 1,
   //     item: (index: number) => {
-  //       return new File([""], "filename", { type: "image/png" });
+  //       return file;
   //     },
   //     [Symbol.iterator]: function (): IterableIterator<File> {
   //       throw new Error("Function not implemented.");
   //     },
   //   };
+  //   const newUser = {
+  //     image,
+  //     user: {
+  //       name: "new",
+  //       email: "new@mail.com",
+  //       password: "new123",
+  //     },
+  //   };
+  //   await store.dispatch(userRegister(newUser));
+  //   const currentUser = store.getState().user.userList;
+  //   expect(currentUser.length).toBe(1);
   // });
   test("update user", async () => {
     await store.dispatch(fetchAllUsers());

@@ -28,6 +28,11 @@ html {
   padding: 0;
 }
 
+.pageContainer {
+  position: relative;
+  min-height: 100vh;
+}
+
 .mainContainer {
   max-width: 1320px;
   padding: 8rem 6rem 2rem;

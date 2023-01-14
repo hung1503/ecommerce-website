@@ -98,7 +98,8 @@ export const userRegister = createAsyncThunk(
       const data = await response.data;
       return data;
     } catch (error: any) {
-      console.log(error.message);
+      const err = error as AxiosError;
+      return err;
     }
   }
 );
@@ -148,9 +149,10 @@ const userSlice = createSlice({
         state.currentUser = action.payload;
       })
       .addCase(userRegister.fulfilled, (state, action) => {
-        if (action.payload) {
-          state.userList.push(action.payload);
+        if (action.payload instanceof AxiosError) {
+          return state;
         }
+        state.userList.push(action.payload);
         return state;
       })
       .addCase(userUpdate.fulfilled, (state, action) => {

@@ -33,3 +33,16 @@
     outline: none;
   }
 }
+
+@mixin routeLink {
+  display: flex;
+  margin: 10px 0 40px;
+  & a {
+    text-decoration: none;
+    color: #7c7c7c;
+    &:hover {
+      text-decoration: underline;
+      color: #333333;
+    }
+  }
+}

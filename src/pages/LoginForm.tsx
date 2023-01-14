@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import EastIcon from "@mui/icons-material/East";
 import { Link, useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../hooks/reduxHook";
 import { authenticalCredential } from "../redux/reducers/userReducer";
@@ -63,7 +64,9 @@ const LoginForm = () => {
             multiple rewards
           </p>
           <div>
-            <Link to="/register">Register Now</Link>
+            <Link to="/register" className="login-section-register-btn">
+              Register Now <EastIcon />
+            </Link>
           </div>
         </div>
       </div>

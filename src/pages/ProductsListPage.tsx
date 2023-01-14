@@ -70,6 +70,10 @@ const ProductsListPage = () => {
   const firstProductIndex = lastProductIndex - productsPerPage;
   const currentProducts = products.slice(firstProductIndex, lastProductIndex);
 
+  if (products.length === 0 || categories.length === 0) {
+    return <h2>Loading...</h2>;
+  }
+
   return (
     <div className="productListContainer">
       <div className="productListContainer-route">

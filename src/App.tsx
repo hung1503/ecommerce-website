@@ -18,7 +18,7 @@ import CreateProductForm from "./pages/CreateProductForm";
 
 const App = () => {
   return (
-    <div>
+    <div className="pageContainer">
       <Navbar />
       <div className="mainContainer">
         <Routes>
