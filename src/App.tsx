@@ -15,11 +15,13 @@ import LoginForm from "./pages/LoginForm";
 import RegisterForm from "./pages/RegisterForm";
 import Profile from "./pages/Profile";
 import CreateProductForm from "./pages/CreateProductForm";
+import NotiBar from "./components/NotiBar";
 
 const App = () => {
   return (
     <div className="pageContainer">
       <Navbar />
+      <NotiBar />
       <div className="mainContainer">
         <Routes>
           <Route path="/" element={<HomePage />} />

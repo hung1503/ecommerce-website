@@ -13,6 +13,7 @@ import {
 } from "../redux/reducers/productReducer";
 import { ProductType } from "../types/product";
 import Pagination from "../components/Pagination";
+import { displayNoti } from "../redux/reducers/notification";
 
 const ProductsListPage = () => {
   const [sort, setSort] = useState("");
@@ -62,6 +63,12 @@ const ProductsListPage = () => {
         product: product,
         quantity: 1,
         totalPrice: product.price,
+      })
+    );
+    dispatch(
+      displayNoti({
+        message: "Item added to your cart!",
+        type: "success",
       })
     );
   };

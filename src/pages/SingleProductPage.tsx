@@ -3,6 +3,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import EditProduct from "../components/EditProduct";
 import { useAppDispatch, useAppSelector } from "../hooks/reduxHook";
 import { addToCart } from "../redux/reducers/cartReducer";
+import { displayNoti } from "../redux/reducers/notification";
 import {
   fetchAllProducts,
   removeProduct,
@@ -38,11 +39,23 @@ const SingleProductPage = () => {
       totalPrice: item.price * quantity,
     };
     dispatch(addToCart(itemAddToCart));
+    dispatch(
+      displayNoti({
+        message: "Item added to your cart!",
+        type: "success",
+      })
+    );
   };
 
   const handleDelete = (id: number) => {
     dispatch(removeProduct(id));
     nav("/products");
+    dispatch(
+      displayNoti({
+        message: "Item had been removed!",
+        type: "success",
+      })
+    );
   };
 
   if (!product) return <h2>Loading...</h2>;
@@ -99,7 +112,7 @@ const SingleProductPage = () => {
             <EditProduct togglePopUp={togglePopUp} product={product} />
           )}
           <p>
-            Have a question? <Link to="/contacts">Ask us here</Link>
+            Have a question? <Link to="/contact">Ask us here</Link>
           </p>
         </div>
       </div>

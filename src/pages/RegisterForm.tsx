@@ -42,6 +42,7 @@ const RegisterForm = () => {
             name="registerName"
             id="registerName"
             className="register-form-input_input"
+            required
             value={name}
             onChange={({ target }) => setName(target.value)}
           />
@@ -55,6 +56,7 @@ const RegisterForm = () => {
             name="registerEmail"
             id="registerEmail"
             className="register-form-input_input"
+            required
             value={email}
             onChange={({ target }) => setEmail(target.value)}
           />
@@ -71,6 +73,7 @@ const RegisterForm = () => {
             name="registerPassword"
             id="registerPassword"
             className="register-form-input_input"
+            required
             value={password}
             onChange={({ target }) => setPassword(target.value)}
           />

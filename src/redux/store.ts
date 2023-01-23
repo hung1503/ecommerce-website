@@ -1,6 +1,7 @@
 import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
 import cartReducer from "./reducers/cartReducer";
 import categoryReducer from "./reducers/categoryReducer";
+import notificationReducer from "./reducers/notification";
 import productReducer from "./reducers/productReducer";
 import userReducer from "./reducers/userReducer";
 
@@ -11,6 +12,7 @@ export const createStore = () => {
       cart: cartReducer,
       user: userReducer,
       categories: categoryReducer,
+      notification: notificationReducer,
     },
   });
 };

@@ -6,6 +6,7 @@ import { useAppDispatch, useAppSelector } from "../hooks/reduxHook";
 import { fetchAllProducts } from "../redux/reducers/productReducer";
 import { ProductType } from "../types/product";
 import { addToCart } from "../redux/reducers/cartReducer";
+import { displayNoti } from "../redux/reducers/notification";
 
 const Carousel = () => {
   const products = useAppSelector((state) => state.products);
@@ -20,6 +21,12 @@ const Carousel = () => {
         product: product,
         quantity: 1,
         totalPrice: product.price,
+      })
+    );
+    dispatch(
+      displayNoti({
+        message: "Item added to your cart!",
+        type: "success",
       })
     );
   };

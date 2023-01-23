@@ -1,0 +1,22 @@
+.notiBarSection {
+  position: fixed;
+  top: -90px;
+  animation: enter-leave 3s ease-in-out;
+  left: calc(60% - 50px);
+  width: 600px;
+  height: 42px;
+  @keyframes enter-leave {
+    0% {
+      top: -90px;
+    }
+    7.5% {
+      top: 30px;
+    }
+    92.5% {
+      top: 30px;
+    }
+    100% {
+      top: -90px;
+    }
+  }
+}

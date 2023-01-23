@@ -4,6 +4,7 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { useAppDispatch, useAppSelector } from "../hooks/reduxHook";
 import { userLogout } from "../redux/reducers/userReducer";
 import avatar from "../assets/images/avatar.jpg";
+import { displayNoti } from "../redux/reducers/notification";
 const Navbar = () => {
   const cart = useAppSelector((state) => state.cart);
   const user = useAppSelector((state) => state.user.currentUser);
@@ -13,6 +14,12 @@ const Navbar = () => {
   const handleLogOut = () => {
     dispatch(userLogout());
     nav("/login");
+    dispatch(
+      displayNoti({
+        message: "User successfully log out",
+        type: "success",
+      })
+    );
   };
   return (
     <div className="navbarContainer">

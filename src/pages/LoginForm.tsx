@@ -3,6 +3,7 @@ import EastIcon from "@mui/icons-material/East";
 import { Link, useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../hooks/reduxHook";
 import { authenticalCredential } from "../redux/reducers/userReducer";
+import { displayNoti } from "../redux/reducers/notification";
 
 const LoginForm = () => {
   const user = useAppSelector((state) => state.user.currentUser);
@@ -25,6 +26,12 @@ const LoginForm = () => {
     );
     setEmail("");
     setPassword("");
+    dispatch(
+      displayNoti({
+        message: "User Successfully Login",
+        type: "success",
+      })
+    );
   };
   return (
     <div className="login-container">
@@ -39,6 +46,7 @@ const LoginForm = () => {
             name="loginEmail"
             id="loginEmail"
             className="login-section-form_input"
+            required
             value={email}
             onChange={({ target }) => setEmail(target.value)}
           />
@@ -50,6 +58,7 @@ const LoginForm = () => {
             name="loginPassword"
             className="login-section-form_input"
             id="loginPassword"
+            required
             value={password}
             onChange={({ target }) => setPassword(target.value)}
           />
