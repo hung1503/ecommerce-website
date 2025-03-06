@@ -13,7 +13,11 @@ const Footer = () => {
     <footer className="footerSection">
       <div className="footerSection-promo">
         <p>BECOME A MEMBER & GET 30% OFF YOUR FIRST ORDER</p>
-        <button>JOIN NOW</button>
+        <button>
+          <Link to="/register" style={{ color: "white" }}>
+            JOIN NOW
+          </Link>
+        </button>
       </div>
       <div className="footer-links">
         <div className="footer-navbar">

@@ -27,24 +27,27 @@ const CartPage = () => {
   return (
     <div className="cart-container">
       <h1>My Cart</h1>
-      {cart.length === 0 && (
-        <div>
-          <p>Your cart is empty</p>
-          <p>Let's go shopping!!</p>
-        </div>
-      )}
       <div className="cart-section">
         <table className="cart-table-items">
-          <thead>
-            <tr>
-              <th>Item</th>
-              <th></th>
-              <th>Price</th>
-              <th>Quantity</th>
-              <th>Total Price</th>
-              <th></th>
-            </tr>
-          </thead>
+          {cart.length > 0 ? (
+            <thead>
+              <tr>
+                <th>Item</th>
+                <th></th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Total Price</th>
+                <th></th>
+              </tr>
+            </thead>
+          ) : (
+            <div style={{ margin: "" }}>
+              <h2>Your cart is empty</h2>
+              <p>
+                Let's go <Link to="/">shopping!!</Link>
+              </p>
+            </div>
+          )}
           {cart.map((item) => {
             return (
               <tbody className="cart-tbody" key={item.product.id}>

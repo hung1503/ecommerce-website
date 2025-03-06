@@ -10,7 +10,7 @@
 
 A basic e-commerce website is built with React, Redux toolkit, TypeScript, SASS, React Router. The website has a shopping home page, product details page, and a checkout page. It's also have the Log In and Register function for user. The data for the website is fetched from the [Platzi Fake Store API](https://fakeapi.platzi.com/).
 
-Check out the website [Here](https://63c252c4354e3b000986b2e1--effervescent-sherbet-fc84e3.netlify.app/)
+Check out the website [Here](https://effervescent-sherbet-fc84e3.netlify.app/)
 
 ## Installation
 

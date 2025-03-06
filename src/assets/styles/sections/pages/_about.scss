@@ -1,0 +1,21 @@
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.text {
+  font-size: 1.1rem;
+  color: #555;
+  line-height: 1.6;
+}
